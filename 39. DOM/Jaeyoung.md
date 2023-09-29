@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <aside>
 💡 **HTML 문서의 계층적 구조**와 그속의 정보를 표현하고 제어할수 있는 API
 즉! **메서드**와 **프로퍼티**를 제공하는 **트리 자료구조**
@@ -707,3 +708,8 @@ class 어트리뷰트를 조작하기 위해서는 DOM 프로퍼티 class 가 �
 </script>
 
 ```
+=======
+
+
+1. Document.Prototype.getElementById => 에서 따로 변수 생성을 하지않아도 Id 이름으로 전역변수가 생성된다!
+>>>>>>> Stashed changes
