@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- id를 이용한 요소 노드 취득 -->
+    <ul>
+        <li id="banana">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="orange">Orange</li>
+    </ul>
+    <div id="foo"></div>
+    <script>
+        // id가 banana인 요소를 반환
+        const $elem1 = document.getElementById("banana");
+
+        // id가 중복되어도 첫 요소 <li id="banana">Apple</li>를 반환
+        const $elem2 = document.getElementById("banana");
+
+        // id가 grapge인 HTML 요소가 없어 null을 반환
+        const $elem3 = document.getElementById("grapge");
+        
+        // id 값과 동일한 이름의 전역 변수가 암묵적으로 선언되고 해당 노드 객체가 할당된다.
+        console.log(foo === document.getElementById("foo")); // true
+
+        // 암묵적 전역으로 생성된 전역 프로퍼티는 삭제되지만 전역 변수는 삭제되지 않는다.
+        delete foo;
+        console.log(foo); // <div id="foo"></div>
+
+        let foo = 1;
+
+        // id 값과 동일한 전역 변수가 이미 선언되어 있으면 노드 객체가 재할당되지 않는다.
+        console.log(foo); // 1
+    </script>
+
+    <!-- 태그 이름을 이용한 요소 노드 취득 -->
+    <ul id="fruits">
+        <li>Apple</li>
+        <li>Banana</li>
+        <li>Orange</li>
+    </ul>
+    <ul>
+        <li>HTML</li>
+    </ul>
+    <script>
+        // 태그 이름이 li인 요소 노드를 모두 HTMLCollection 객체에 담겨 반환
+        const $elems1 = document.getElementsByTagName("li");  
+
+        // 모든 요소를 탐색하여 반환
+        const $elems2 = document.getElementsByTagName("*");
+
+        // 특정 요소 노드의 자손 노드 중에서 요소 노드를 검색하여 반환
+        const $fruits = document.getElementById("fruits");
+        const $lisFromFruits = $fruits.getElementsByTagName("li");
+
+        console.log($lisFromFruits); // HTMLCollection(3) [li, li, li]
+    </script>
+
+    <!-- calss를 이용한 요소 노드 취득 -->
+    <ul>
+        <li class="fruit apple">Apple</li>
+        <li class="fruit banana">Banana</li>
+        <li class="fruit oragne">Oragne</li>
+    </ul>
+
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="oragne">Oragne</li>
+    </ul>
+
+    <script>
+        // class 값이 fruit인 요소를 모두 탐색하여 반환
+        const $elems = document.getElementsByClassName("fruit");
+
+        // class 값이 fruit, apple인 요소 노드를 모두 탐색하여 반환
+        const $apples = document.getElementsByClassName("fruit apple");
+
+        // id가 fruit인 자식 노드 중에 class 값이 banana인 요소 노드 모두 탐색하여 반환
+        const $fruit = document.getElementById("fruit");
+        const $bananas = $fruit.getElementsByClassName("banana");
+    </script>
+
+    <!-- CSS 선택자를 요소 노드 취득 -->
+    <ul>
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="oragne">Oragne</li>
+    </ul>
+
+    <script>
+        // class 값이 banana인 첫 번째 요소 노드를 탐색하여 반환
+        const $elem = document.querySelector(".banana");
+
+        // HTML 모든 문서 요소 노드를 취득
+        const $all = document.querySelectorAll("*");
+
+        // ul 요소의 자식 요소인 li 요소를 모두 탐색하여 반환
+        const $elems3 = document.querySelectorAll("ul > li");
+    </script>
+
+    <!-- 특정 요소 노드를 취득할 수 있는지 확인 -->
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="oragne">Oragne</li>
+    </ul>
+    <script>
+        const $apple = document.querySelector(".apple");
+
+        // $apple 노드는 #fruits > li.apple로 취득할 수 있따.
+        console.log($apple.matches("#fruits > li.apple")); // true
+    </script>
+
+    <!-- HTMLCollection과 NodeList -->
+    <ul id="fruits">
+        <li class="red">Apple</li>
+        <li class="red">Banana</li>
+        <li class="red">Oragne</li>
+    </ul>
+    <script>
+        // HTMLCollection를 반환
+        const $reds = document.getElementsByClassName("red"); // 3개의 요소
+
+        for(let i=0; i<$reds.length ; i++) {
+            $reds[i].className = "blue";
+        }
+
+        console.log($reds) // 1개의 요소로 변경
+
+        // NodeList를 반환
+        const $reds2 = document.querySelectorAll(".red");
+
+        $reds2.forEach(elem => elem.className = "blue");
+    </script>
+</body>
+</html>
