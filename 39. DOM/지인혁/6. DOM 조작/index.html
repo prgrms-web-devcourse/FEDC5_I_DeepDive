@@ -6,6 +6,137 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!-- innerHTML -->
+    <div id="foo">Hello <span>world!</span></div>
+    <script>
+        console.log(document.querySelector("#foo").textContent); // "Hello World!"
+        console.log(document.querySelector("#foo").innerHTML); // "Hello <span>world!</span>"
+
+        document.querySelector("#foo").innerHTML = "Hi <span>there!</span>";
+        // 실제로 화면에는 HTML이 마크업 파싱되어 Hi there!라고 그려진다.
+    </script>
+
+    <!-- insertAdjacentHTML 메서드 -->
+    <!-- beforebegin -->
+    <div id="foo">
+        <!-- afterbegin -->
+        text
+        <!-- beforeend -->
+    </div>
+    <!-- afterend -->
+    <script>
+        const $foo = document.querySelector("#foo");
+
+        $foo.insertAdjacentHTML("beforebegin", "<p>Hi</p>")
+        $foo.insertAdjacentHTML("afterbegin", "<p>Hi</p>")
+        $foo.insertAdjacentHTML("beforeend", "<p>Hi</p>")
+        $foo.insertAdjacentHTML("afterend", "<p>Hi</p>")
+    </script>
+
+    <!-- 노드 생성과 추가 -->
+    <script>
+        // li 요소 노드 생성 DOM에 추가x 홀로 존재하는 상태다.
+        const $li = documnet.createElement("li"); 
+
+        // 텍스트 노드 생성
+        const textNode = document.createTextNode("Banana");
+
+        // 텍스트 노드를 자식 노드로 추가
+        $li.appendChlid(textNode);
+        $li.textContent = "Banana";
+    </script>
+
+    <!-- 복수의 노드 생성과 추가 -->
+    <ul id="fruits"></ul>
+    <script>
+        const $fruits = document.querySelector("#fruits");
+
+        const $fragment = document.createDocumentFragment(); // fragment 노드 생성
+
+        ["Apple", "Banana", "Orange"].forEach(text => {
+            const $li = document.createElement("li");
+            
+            $li.textContent = text;
+            $fragment.append($li); // fragment에 자식 li 추가
+        })
+
+        // fragment에 담은 li 태그들을 실제 DOM 부모 노드에 한 번만 추가
+        $fruits.appendChild($fragment);
+    </script>
+
+    <!-- 노드 삽입 -->
+    <ul id="fruits">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+    <script>
+        const $f = document.querySelector("#fruits");
+        const $li = document.createElement("li");
+
+        $li.textContent = "Orange";
+        // 마지막 자식 노드로 추가
+        $f.appendChild($li);
+        // li요소를 마지막 자식 노드 앞에 삽입
+        $f.insertBefore($li, $f.lastElementChild);
+</script>
+
+    <!-- 노드 이동 -->
+    <ul id="fruits">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+    <script>
+        const $fru = document.querySelector("#fruits");
+        const [$apple, $banana] = $fru.children;
+
+        // 이미 존재하는 apple 요소를 맨 마지막으로 이동
+        $fru.appendChild($apple); // banana -> apple
+        // 이미 존재하는 banana 요소를 맨 마지막 자식 앞으로 이동         
+        $fru.insertBefore($banana, $fruits.lastElementChild); // apple -> banana
+    </script>
+
+    <!-- 노드 복사 -->
+    <ul id="fruits">
+        <li>Apple</li>
+    </ul>
+    <script>
+        const $frui = document.querySelector("#fruits");
+        const $apple1 = $frui.firstElementChild;
+        const $shallow = $apple.cloneNode(); // 얕은 복사 텍스트 없는 빈 사본이다.
+        const $deep = $frui.cloneNode(true); // 깊은 복사 모든 자손이 포함
+
+        // 자식 마지막 요소에 banana추가
+        $shallow.textContent = "banana";
+        $frui.appendChild($shallow);
+
+        // 부모 자손 모두를 복사한 사본 노드를 자식 마지막 노드로 추가
+        $frui.appendChild($deep);
+    </script>
+
+    <!-- 노드 교체 -->
+    <ul id="fruits">
+        <li>Apple</li>
+    </ul>
+    <script>
+        const $fruit = document.querySelector("#fruits");
+
+        const $newChild = document.createElement("li");
+        $newChild.textContent = "Banana";
+
+        // Apple위치에 새로운 자식 Banana를 채워넣고 Apple은 삭제됨
+        $fruit.replaceChild($newChild, $fruit.firstElementChild);
+    </script>
+
+    <!-- 노드 삭제 -->
+    <ul id="fruits">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+    <script>
+        const $fruits1 = document.querySelector("#fruits");
+
+        // fruits 요소 노드의 마지막 자식 노드를 DOM에서 삭제
+        $fruits1.removeChild($fruits1.lastElementChild);
+    </script>
 </body>
 </html>

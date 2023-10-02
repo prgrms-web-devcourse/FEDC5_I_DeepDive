@@ -6,6 +6,91 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!-- 자식 노드 탐색 -->
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="orange">Orange</li>
+    </ul>
+    <script>
+        const $f = document.getElementById("fruits");
+
+        // $f의 모든 자식 노드를 탐색하는데 텍스트 노드도 포함되어 있다..
+        console.log($f.childNodes); // [text, li, text, li, text, li, text]
+
+        // $f의 모든 자식 노드를 탐색하는데 텍스트 노드는 포함되어 있지 않다.
+        console.log($f.children); // [li, li, li]
+
+        // $f의 첫 번째 자식 노드를 반환하는데 텍스트 노드를 반환할 수도 있다.
+        console.log($f.firstChild); // [text]
+
+        // $f의 마지막 자식 노드를 반환하는데 텍스트 노드를 반환할 수도 있다.
+        console.log($f.lastChild); // [text]
+
+        // $f의 첫 번째 자식 노드를 반환하는데 오직 프로퍼티 요소 노드만 반환된다.
+        console.log($f.firstElementChild); // [li]
+
+        // $f의 마지막 자식 노드를 반환하는데 오직 프로퍼티 요소 노드만 반환된다.
+        console.log($f.lastElementChild); // [li]
+    </script>
+
+    <!-- 자식 노드 존재 확인 -->
+    <ul id="fruits">
+    </ul>
+    <script>
+        const $fr = document.getElementById("fruits");
+
+        // 자식 요소는 없지만 텍스트 노드가 포함되어있기에 true를 반환
+        console.log($fr.hasChildNodes()); // true
+
+        // 자식 노드 중에 텍스트 노드가 아닌 요소 노드가 존재하는지 확인
+        console.log(!!$fr.children.length); // 0 = false
+        console.log(!!$fr.childElementCount); // 0 = false
+    </script>
+
+    <!-- 요소 노드의 텍스트 노드 탐색 -->
+    <div id="foo">Hello</div>
+    <script>
+        console.log(document.getElementById("foo").firstChild); // Hello
+    </script>
+
+    <!-- 부모 노드 탐색 -->
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="orange">Orange</li>
+    </ul>
+    <script>
+        const $banana = document.querySelector("#banana");
+
+        // .banana  요소 노드의 부모 노드를 탐색
+        console.log($banana.parentNode); // ul#fruits
+    </script>
+
+    <!-- 형제 노드 탐색 -->
+    <ul id="fruits">
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="orange">Orange</li>
+    </ul>
+    <script>
+        const $fru = document.getElementById("fruits");
+        const firstChild = $fru.firstChild; // $fru의 첫 자식 텍스트를 반환
+
+        // 첫 텍스트의 다음 형제 노드는 apple이다.
+        console.log(firstChild.nextSibling);
+
+        // apple의 이전 노드는 텍스트를 반환하여 텍스트가 된다.
+        console.log(firstChild.nextSibling.previousSibling);
+
+        // 이 메서드는 텍스트를 반환하지 않기 때문에 $fru 부모에서 바로 apple을 반환
+        console.log($fru.firstElementChild);
+
+        // apple의 다음 형제 노드도 텍스트를 반환하지 않아 banana가 된다.
+        console.log($fru.firstElementChild.nextElementSibling);
+
+        // banana에서 이전 형제인 apple을 가르킨다 이것도 텍스트를 반환하지 않는다.
+        console.log($fru.firstElementChild.nextElementSibling.previousElementSibling);
+    </script>
 </body>
 </html>
