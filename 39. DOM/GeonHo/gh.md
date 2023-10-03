@@ -8,11 +8,11 @@ DOM은 HTML 문서의 계층적 구조와 정보를 표현하며 이를 제어�
 
 HTML 요소는 HTML 문서를 구성하는 개별적인 요소를 의미한다.
 
-![Alt text](/39.%20DOM/image_gh/image-0.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-0.png)
 
 HTML 요소는 렌더링 엔진에 의해 파싱되어 DOM을 구성하는 요소 노드 객체로 변환된다.
 
-![Alt text](/39.%20DOM/image_gh/image-1.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-1.png)
 
 HTML 요소의
 어트리뷰트 => 어트리뷰트 노드
@@ -30,11 +30,11 @@ HTML 요소의
 
 DOM은 DOM을 제어할 수 있는 API, 즉 프로퍼티와 메서드를 제공하는 트리이다.
 
-![Alt text](/39.%20DOM/image_gh/image-3.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-3.png)
 
 <br>노드 객체도 자바스크립트 객체이므로 프로토타입에 의한 상속 구조를 갖는다.
 
-![Alt text](/39.%20DOM/image_gh/image-4.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-4.png)
 
 위 사진에서 알 수 있듯, 각 요소 노드 객체는 자신의 프로토타입 체인에 있는 프로토타입의 프로퍼티나 메서드를 상속 받아 사용할 수 있다.
 
@@ -87,9 +87,9 @@ DOM 컬렉션 객체인 HTMLCollection과 NodeList는 DOM API가 여러 개의 �
 
 :question: 살아있는 객체란?
 
-![Alt text](/39.%20DOM/image_gh/image-5.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-5.png)
 
-![Alt text](/39.%20DOM/image_gh/image.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image.png)
 
 (분명 모든 텍스트가 blue로 변해야 할 것 같지만, 그렇지 않은 모습)
 
@@ -118,7 +118,7 @@ DOM 컬렉션 객체인 HTMLCollection과 NodeList는 DOM API가 여러 개의 �
 
 Node, Element 인터페이스는 트리 탐색 프로퍼티들을 제공해준다.
 
-![Alt text](/39.%20DOM/image_gh/image-6.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-6.png)
 
 <br>
 
@@ -126,7 +126,7 @@ Node, Element 인터페이스는 트리 탐색 프로퍼티들을 제공해준�
 
 HTML 요소 사이의 스페이스, 탭, 개행 등의 공백 문자는, 텍스트 노드를 생성하고 이를 공백 텍스트 노드라 한다.
 
-![Alt text](/39.%20DOM/image_gh/image-7.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-7.png)
 
 (이를 참고하여, 노드 탐색할 때 주의하자.)
 
@@ -168,7 +168,7 @@ setter와 getter 모두 존재하는 접근자 프로퍼티로서, 요소 노드
 textContent와 다르게, HTML 마크업이 포함된 문자열을 그대로 반환한다.
 또한 마크업 태그를 삽입할 수도 있다.
 
-![Alt text](/39.%20DOM/image_gh/image-8.png)
+![Alt text](/39.%20DOM/GeonHo/image_gh/image-8.png)
 
 위와 같은 특성 때문에, 사용자로부터 입력받은 데이터를 그대로 innerHTML 프로퍼티에 할당하는 것은 크로스 사이트 스크립팅 공격(XXS)에 취약하므로 위험하다. 마크업 내에 자바스크립트 악성 코드가 포함되어 있다면 파싱 과정에서 그대로 실행될 가능성이 있기 때문이다.
 
