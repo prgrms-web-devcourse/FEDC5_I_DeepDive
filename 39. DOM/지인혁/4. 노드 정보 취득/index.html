@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 노드 정보 취득 -->
+    <div id="foo">Hello</div>
+    <script>
+        console.log(document.nodeType); // 9 
+        consol.log(document.nodeName); // #document
+
+        const $foo = document.querySelector("#foo");
+
+        console.log($foo.nodeType); // 1
+        console.log($foo.nodeName); // DIV
+
+        const $textNode = $foo.firstChild;
+
+        console.log($textNode.nodeType); // 3
+        console.log($textNode.nodeName) // #text
+    </script>
+</body>
+</html>

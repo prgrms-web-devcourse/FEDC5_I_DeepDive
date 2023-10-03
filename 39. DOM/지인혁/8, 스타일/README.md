@@ -1,0 +1,58 @@
+## 인라인 스타일 조작 ##
+
+HTMLELement.prototype.style 프로퍼티는 setter와 setter 모두 존재하는 접근자 프로퍼티로서 요소 노드의 인라인 스타일을 취득하거나 추가 또는 변경한다.
+
+```HTML
+<body>
+    <!-- 인라인 스타일 조작 -->
+    <div style="color : red" class="box red">Hello World</div>
+
+    <script>
+        const $div = document.querySelector("div");
+
+        // 스타일 취득
+        console.log($div.style.color); // red
+        // 스타일 변경
+        $div.style.color = "blue";
+        // 스타일 추가
+        $div.style.width = "100px";
+        $div.style.height = "100px";
+
+        // CSS 프로퍼티를 그대로 사용할려면 마침표 표기 대신 대괄호 표기를 사용
+        $div.style.backgroundColor = "yello";
+        $div.style["background-color"] = "yello";
+
+        // 클래스도 조작이 가능하다
+        console.log($div.className); // "box red"
+        // classList는 DOMTokenList객체로 반환하며 유사 배열 객체이다.
+        console.log($div.classList); // [length: 2, value: "box blue", 0: "box", 1: "blue"]
+        // item을 이용하여 인덱스 부분을 추출
+        console.log($div.classList.item(0)) // box
+        // contains는 해당 클래스가 포함되어있는지 확인
+        console.log($div.classList.contains("box")); // true
+        console.log($div.classList.contains("green")); // false
+        // toggle 메서드는 인수로 전달한 문자열과 일치하는 클래스가 존재하면 제거 아니면 추가
+        $div.classList.toggle("foo"); // box red foo
+        $div.classList.toggle("foo"); // box red
+        $div.classList.toggle("foo", true); // box red foo (foo 클래스를 강제로 추가)
+        $div.classList.toggle("foo", false); // box red (foo 클래스를 강제로 제거)
+
+
+        // 클래스 값 중 red만 blue로 변경
+        $div.classList.replace("red", "blue");
+        // 클래스 추가
+        $div.classList.add("foo"); // box red foo
+        // 클래스 삭제 만약 해당 클래스가 없으면 에러 없이 무시된다.
+        $div.classList.remove("foo"); // box red   
+        
+        // 요소에 적용된 모든 CSS 스타일을 취득하는 방법
+        const computedStyle = window.getComputedStyle($div);
+
+        console.log(computedStyle); // CSSStyleDeclaration
+        console.log(computedStyle.width);
+        console.log(computedStyle.height);
+        console.log(computedStyle.color);
+    </script>
+</body>
+```
+<hr><br>

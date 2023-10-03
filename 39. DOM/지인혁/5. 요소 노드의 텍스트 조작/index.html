@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- nodeValue -->
+    <div id="foo">Hello</div>
+    <script>
+        console.log(document.nodeValue); // 문서노드라 null
+        console.log(document.querySelector("#foo").nodeValue); // 요소노드라 null
+        console.log(document.querySelector("#foo").firstChild.nodeValue); // Hello
+    </script>
+
+    <!-- textContet -->
+    <div id="foo">Hello <span>world!</span></div>
+    <script>
+        console.log(document.querySelector("#foo").textContent); // Hello World!
+    </script>
+</body>
+</html>
