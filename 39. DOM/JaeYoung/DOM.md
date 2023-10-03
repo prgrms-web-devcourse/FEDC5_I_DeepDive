@@ -1,18 +1,50 @@
-<<<<<<< Updated upstream
-<aside>
+
 💡 **HTML 문서의 계층적 구조**와 그속의 정보를 표현하고 제어할수 있는 API
 즉! **메서드**와 **프로퍼티**를 제공하는 **트리 자료구조**
 
-</aside>
+
 
 **DOM ( Document Object Model )**
 
+**탄생**
+
+**JavaScrip**t가 탄생하며 같이 등장하여 **HTML 문서와 상호작용**이 가능하도록 만들어졌지만
+
+ 초창기에는 접근 가능한 태그가 많지 않았음
+
+이후 1998년 표준안이 등장하게 되면서 계속 발전되어 현재는 HTML 문서를 **직접 수정**도 가능해짐
+
+## Virtual DOM
+
+**DOM 의 Render Tree 가 생성되어지는 순서**
+
+**Attachment 과정**
+
+1. 부라우저는 HTML을 읽고 먼저 파싱한 후 DOM Tree 를 생성함
+2. 이후 Style sheets 를 읽고 CSS를 파싱한 후 style rules를 생성함
+
+Attachment 과정이 끝난후  Render Tree 가 생성되어짐
+
+이후 Layout / Reflow 를 통해 DOM node 의 위치를 정해주고 이후 디스플레이에 보여짐
+
+하지만 이후 DOM 을 수정하면 **수정 하는 횟수만큼 이런 과정을 계속해서 반복**해야하고 엄청난 손실이남
+
+
+💡 Virtual DOM 은 실제 DOM Tree를 **JavaScript Object** 를 통해 
+필요한 내용만을 담아 만든 **가상 DOM** 임
+
+
+
+but!
+
+편의성과 특정 상황에 가상DOM의 성능이 더 좋을뿐 기**존의 DOM 보다 무조건 좋은것은 아님**
+
 ## HTML 문서
 
-<aside>
+
 💡 HTML 요소들의 집합이며 모든 요소는 **중첩 관계를 가짐**
 
-</aside>
+
 
 HTML 요소의 **contents 영역안에**는 텍스트 뿐만 아니라 **다른 HTML 요소 포함** 가능
 
@@ -24,14 +56,16 @@ HTML 요소의 **contents 영역안에**는 텍스트 뿐만 아니라 **다른 
 
 ## 노드 객체
 
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/99dcefe2-cfc3-4664-9694-26b02e6fe5e1/7d5a1183-6673-44b9-b31b-681e7c46712d/Untitled.png)
+
 **파싱?**
 
 컴퓨터에서 컴파일러 또는 번역기가 **원시 부호를 기계어로** 번역하는 과정의 **한 단계**
 
-<aside>
+
 💡 DOM 의 노드객체는 자신의 구조 / 정보를 제어 할 수 있는 **DOM API**를 지니고 있음
 
-</aside>
+
 
 이를 통해 자신의 부모 / 형제 / 자식 **노드를 탐색** 가능하고 **어트리뷰트 ( 속성 ) / 텍스트를 조작** 할 수 있음
 
@@ -40,6 +74,8 @@ HTML 요소가 렌더링 엔진에 의해 파싱 되어질때 DOM을 구성하�
 - **HTML 요소** ⇒ 요소 노드 ( 정점 ) 로 변환됨
 - **어트리뷰트** ⇒ 어트리뷰트 노드 ( 정점 ) 로 변환
 - HTML 요소의 **텍스트 contents ⇒** 텍스트 노드( 정점 ) 로 변환
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/99dcefe2-cfc3-4664-9694-26b02e6fe5e1/4e846fa7-4d83-45c6-877c-609909de76e7/Untitled.png)
 
 이미지를 예시로 document ⇒ html ⇒ **body ⇒ ul ⇒ li 의 노드 ( 정점 ) 를 살펴보면**
 
@@ -98,10 +134,10 @@ ECMAScript 사양에 정의된 표준 빌트인 객체가 아닌 브라우저 �
 
 **호스트 객체 Host Object**임 
 
-<aside>
+
 💡 But! 노드 객체 또한 JavaScript Object 이기때문에 **프로토타입에 의한 상속 구조**를 가짐
 
-</aside>
+
 
 - 문서 노드 ⇒ Document / HTML Document 인터페이스를 상속받음
 - 어트리뷰트 노드 ⇒ Attr 을 상속 받음
@@ -121,11 +157,11 @@ ECMAScript 사양에 정의된 표준 빌트인 객체가 아닌 브라우저 �
 
 ## 요소 노드 컨트롤
 
-<aside>
+
 💡 어트리뷰트 노드 / 텍스트 노드 둘다 **요소 노드에 연결**되어있기 때문에
       HTML의 구조 / 내용 / 텍스트 / 스타일 등을 **동적으로 조작하려면** 요소 노드를 취득해야함
 
-</aside>
+
 
 **Document.prototype.getElementById ( ID )**
 
@@ -207,14 +243,14 @@ div::before { ... } /* 가상 요소 선택자 => 자세한건 검색 ( 경우�
 - 조건에 맞는 요소 노드가 없다면 ? **null** / CSS 선택자 문법을 틀리면 ? **DOMException 에러**
     - querySelectorAll 조건에 맞는 요소 노드가 없으면 빈 배열을 반환
 
-<aside>
+
 💡 querySelector 메소드보다 getElementBy*** 메소드가 좀 더 빠름
 
 but! querySelector가 좀 더 구체적인 조건을 사용가능함
 
 따라서, **ID 어트리뷰트가 있다면 ? getElementById 를 사용 그외에는 querySelector 추천**
 
-</aside>
+
 
 **Element.prototype.matches**
 
@@ -223,11 +259,11 @@ but! querySelector가 좀 더 구체적인 조건을 사용가능함
 
 ## HTMLCollection / NodeLIst
 
-<aside>
+
 💡 DOM Collection 객체 / NodeList 모두 DOM API가 **여러 개의 결과값을 반환하기 위한** 
 DOM 컬렉션 객체
 
-</aside>
+
 
 - 모두 유사 배열 객체이면서 **이터러블**이기 때문에 for … of / 스프레드 문법을 통해 **배열 변환 가능**
     - 🔥 계속 언급하지만 **배열이 아닌 객체**
@@ -446,19 +482,19 @@ console.log(document.getElementById("none").textcontent )
 // => Hello World
 ```
 
-<aside>
+
 💡 취득 방식에 차이가 있을 뿐 textContent / nodeValue 둘다 값을 가져올 수 있지만
 
 textContent 가 코드사용에 간편한편
 
-</aside>
+
 
 ## DOM 조작
 
-<aside>
+
 💡 새로운 노드 생성후 DOM 에 추가 / 기존 노드 삭제 / 교체 하는것을 의미함
 
-</aside>
+
 
 하지만, 추가 / 삭제 시 **리플로우**와 **리페인트**가 발생할 수 있으니 조심해야함
 
@@ -475,6 +511,8 @@ textContent 가 코드사용에 간편한편
 
 - 기존 요소를 제거 하지 않고 지정 위치에 새로운 요소를 삽입
 - 1번째 인자에 **beforebegin / afterbegin / beforeend / afterend** 4가지 가능
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/99dcefe2-cfc3-4664-9694-26b02e6fe5e1/03befc98-73dd-4254-865c-13703aaa6b31/Untitled.png)
 
 - 2번째 인자에 원하는 HTML 마크업을 문자열로 전달 ⇒ “<p> text </p>”
 - innerHTML 프로퍼티보다 효율적이고 빠름
@@ -493,12 +531,12 @@ textContent 가 코드사용에 간편한편
     - 예시를 들면 요소 노드에 현재 만든 텍스트 노드를 인수로 전달하여 appendCild 
     를 사용하게되면 요소 노드 자식 노드로 텍스트 노드가 추가됨
     
-    <aside>
+    
     💡 하지만..
     따로 자식 노드를 생성하고 할당 하기보다는 
     요소 노드에 **textContent**를 통해 바로 text를 전달하는게 **훨 씬 빠름**
     
-    </aside>
+    
     
     - 텍스트 뿐만 아니라 요소 노드를 **다른 요소 노드의 자식 노드 지정에도 사용**
 4. **Node.prototype.insertBefore( newNode , childNode )**
@@ -585,14 +623,14 @@ parent.appendChild(container)
 
 ## 어트리뷰트
 
-<aside>
+
 💡 HTML 요소는 여러개의 어트리뷰트 ( 속성 ) 을 가질 수 있음
 
 <input id=”none” type=”text” value=”Value” >
 
 🔥HTML 어트리뷰트의 역할은 HTML 요소의 초기 상태를 저장하는 역할로 변하지 않음
 
-</aside>
+
 
 - 어트리뷰트 의 종류에는
     
@@ -630,11 +668,11 @@ parent.appendChild(container)
 
 ## 🔥 스타일
 
-<aside>
+
 💡 **HTMLElement.prototype.style 
 setter / getter** 동시에 접근가능하며 요소 노드의 **인라인 스타일을 취득 / 변경** 할 수 있음
 
-</aside>
+
 
 프로퍼티 참조시 **CSSStyleDeclaration 타입의 객체를 반환**함
 
@@ -708,8 +746,3 @@ class 어트리뷰트를 조작하기 위해서는 DOM 프로퍼티 class 가 �
 </script>
 
 ```
-=======
-
-
-1. Document.Prototype.getElementById => 에서 따로 변수 생성을 하지않아도 Id 이름으로 전역변수가 생성된다!
->>>>>>> Stashed changes
