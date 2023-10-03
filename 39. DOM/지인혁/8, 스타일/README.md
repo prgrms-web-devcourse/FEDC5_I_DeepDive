@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+## 인라인 스타일 조작 ##
+
+HTMLELement.prototype.style 프로퍼티는 setter와 setter 모두 존재하는 접근자 프로퍼티로서 요소 노드의 인라인 스타일을 취득하거나 추가 또는 변경한다.
+
+```HTML
 <body>
     <!-- 인라인 스타일 조작 -->
     <div style="color : red" class="box red">Hello World</div>
@@ -56,4 +54,5 @@
         console.log(computedStyle.color);
     </script>
 </body>
-</html>
+```
+<hr><br>
