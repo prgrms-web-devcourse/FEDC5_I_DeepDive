@@ -6,6 +6,30 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <!-- HTML 어트리뷰트 vs DOM 프로퍼티 -->
+    <input type="text" id="user" value="ungmo2">
+    <script>
+        const $input = document.getElementById("user");
+
+        $input.value = "foo"; // DOM 프로퍼티로 값 변경
+
+        console.log($input.value); // foo
+        // HTML 어트리뷰트며 DOM 프로퍼티로 변경해도 초기값을 갖는다.
+        console.log($input.getAttribute("value")); // ungmo2
+    </script>
+
+    <!-- data 어트리뷰트와 dataset 프로퍼티 -->
+    <ul class="users">
+        <li id="1" data-user-id="7621" data-role="admin">Lee</li>
+    </ul>
+    <script>
+        const $li = document.querySelector("#1");
+
+        console.log($li.dataset.userId); // 7621
+        console.log($li.dataset.role); // admin
+
+        $li.dataset.role = "subscriber";
+        console.log($li.dataset.role); // subscriber
+    </script>
 </body>
 </html>
