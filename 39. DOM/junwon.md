@@ -9,7 +9,7 @@
 - 렌더링 엔진에 의해 파싱되어 DOM을 구성하는 요소 노드 객체로 변환
 
 ## 노드 객체
-![Alt text](image-1.png)
+![img](https://velog.velcdn.com/images%2Fhangem422%2Fpost%2F9565d686-2059-473b-a98b-8445876df26a%2Fweb-node01.png)
 ### 문서 노드
 - DOM 트리의 최상위에 존재하는 루트 노드, document 객체
 - document 객체 : 브라우저가 렌더링한 HTML 문서 전체를 가리키는 객체
@@ -24,7 +24,7 @@
 - 자식 노드를 가질 수 없는 리프 노드
 - DOM 트리의 최종단이어서 접근하려면 부모 노드인 요소 노드에 먼저 접근해야 한다
 
-![Alt text](image-2.png)
+![img](https://velog.velcdn.com/images%2Fhangem422%2Fpost%2F2cda81a1-08b2-4f94-8ea5-7b87baa7d3f6%2Fweb-rendering03.png)
 ### input 요소 노드 객체
 - 객체 : 
 ## 요소 노드 취득
@@ -101,7 +101,7 @@ p::before { ... }
   </body>
 </html>
 ```
-![Alt text](image.png)
+![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F4lD0e%2FbtrA1BDo2CG%2FpiJ8q6wuEjdBUu2JzJx1uK%2Fimg.png)
 
 ### 자식 노드 탐색
 - Node.prototype.childNodes : 자식 노드를 모두 탐색하여 NodeList에 담아 반환한다. 요소 노드와 텍스트 노드를 포함한다.
@@ -151,7 +151,7 @@ p::before { ... }
 - Element.prototype.insertAdjacentHTML(position, DOMString) 메서드 :  기존 요소를 제거하지 않으면서 위치를 지정해 새로운 요소를 삽입한다
 - 위치를 지정하는 첫번째 인수로 전달할 수 있는 문자열은 'beforebegin','afterbegin','beforeend','afterend'
 -  insertAdjacentHTML 메서드는 기존 요소에 영향을 주지 않고 새롭게 삽입될 요소만을 파싱하여 자식 요소를 추가하므로 innerHTML 프로퍼티보다 효율적이고 빠르다
-![Alt text](image-3.png)
+![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fvr01a%2FbtrARieA5iZ%2FveqBuulxT76bHvd8WnErN1%2Fimg.png)
 ### 노드 생성과 추가
 - DOM은 노드를 직접 생성/삽입/삭제/치환하는 메서드도 제공
 - Document.prototype.createElement(tagName) : **요소 노드를 생성**하여 반환한다. 인수로는 태그 이름을 나타내는 문자열을 전달
